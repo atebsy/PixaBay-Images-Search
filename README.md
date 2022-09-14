@@ -12,7 +12,7 @@ A simple app that helps search images on Pixabay and display result in list view
     <td><img src="https://github.com/atebsy/PixaBay-Images-Search/blob/main/Screenshot_20220914-170615_PixaBay%20Images.jpg"></td>
      <td><img src="https://github.com/atebsy/PixaBay-Images-Search/blob/main/Screenshot_20220914-170636_PixaBay%20Images.jpg"></td>
     <td><img src="https://github.com/atebsy/PixaBay-Images-Search/blob/main/Screenshot_20220914-170656_PixaBay%20Images.jpg"></td>
-    <td><img src="https://github.com/atebsy/PixaBay-Images-Search/blob/main/Screenshot_20220914-173424_PixaBay%20Images"></td>
+    <td><img src="https://github.com/atebsy/PixaBay-Images-Search/blob/main/Screenshot_20220914-173424_PixaBay%20Images.jpg"></td>
   </tr>
  </table>
  
