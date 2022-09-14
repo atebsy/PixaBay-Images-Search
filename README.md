@@ -8,7 +8,7 @@ A simple app that helps add event and view when and how much time before the eve
      <td>Add new event</td>
   </tr>
   <tr>
-    <td><img src="https://github.com/atebsy/events-countdown/blob/master/screenshot_1.jpg"></td>
+    <td><img src="https://github.com/atebsy/PixaBay-Images-Search/blob/main/Screenshot_20220914-170615_PixaBay%20Images.jpg"></td>
      <td><img src="https://github.com/atebsy/events-countdown/blob/master/screenshot_3.jpg"></td>
     <td><img src="https://github.com/atebsy/events-countdown/blob/master/screenshot_2.jpg"></td>
   </tr>
