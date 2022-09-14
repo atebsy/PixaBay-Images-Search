@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PixaBay Images</string>
+    <string name="unknown">\?</string>
+    <string name="retry">Retry</string>
+    <string name="search_hint">Enter your search</string>
+    <string name="search_dialog_label">Search dialog</string>
+    <string name="detele_suggestion">Delete search suggestions</string>
+    <string name="empty_results_msg">No results, please try a different search</string>
+    <string name="network_error_msg">Error occured while loading results please try again</string>
+    <string name="tags_tv">tag1, tag2, tag3</string>
+    <string name="username_tv">username</string>
+    <string name="thumbnail">Thumbnail</string>
+    <string name="photo_detail_error">Error while retrieving photo details please try again later</string>
+    <string name="see_details">Do you want to see more details</string>
+    <string name="delete_search">Do you want to delete search suggestion history?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>

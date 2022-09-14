@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchPhotosFragment">
+
+    <fragment
+        android:id="@+id/searchPhotosFragment"
+        android:name="com.example.android.coding.challenge.ui.searchphotos.SearchPhotosFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_search_photos">
+        <action
+            android:id="@+id/action_searchPhotosFragment_to_photosDetailFragment"
+            app:destination="@id/photosDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photosDetailFragment"
+        android:name="com.example.android.coding.challenge.ui.photodetail.ViewPhotosDetailFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_view_photos_detail">
+        <argument
+            android:name="photo"
+            app:argType="com.example.android.coding.challenge.models.Photo" />
+        <action
+            android:id="@+id/action_photosDetailFragment_to_searchPhotosFragment"
+            app:destination="@id/searchPhotosFragment"
+            app:popUpTo="@id/searchPhotosFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+</navigation>

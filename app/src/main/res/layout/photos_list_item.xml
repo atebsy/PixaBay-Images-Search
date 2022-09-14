@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="photo"
+            type="com.example.android.coding.challenge.models.Photo" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        app:cardElevation="4dp"
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="10dp"
+        app:strokeColor="@android:color/background_light">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_preview"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/thumbnail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/preview"
+                app:imgSrc="@{photo.photoThumbnail}"
+                tools:srcCompat="@drawable/preview" />
+
+            <TextView
+                android:id="@+id/username_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@{photo.userName}"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/image_preview"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/username_tv" />
+
+            <TextView
+                android:id="@+id/tags_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:padding="8dp"
+                android:text="@{photo.photoTags}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/image_preview"
+                app:layout_constraintTop_toBottomOf="@+id/username_tv"
+                tools:text="@string/tags_tv"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
