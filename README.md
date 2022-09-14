@@ -1,19 +1,19 @@
-# events-countdown
-A simple app that helps add event and view when and how much time before the event occur
+# Pixabay Image search
+A simple app that helps search images on Pixabay and display result in list view
 
 <table>
   <tr>
-    <td>Actives Events</td>
-     <td>Past Event</td>
-     <td>Add new event</td>
+    <td>Images List</td>
+     <td>Selected Image details</td>
+     <td>Search image</td>
   </tr>
   <tr>
     <td><img src="https://github.com/atebsy/PixaBay-Images-Search/blob/main/Screenshot_20220914-170615_PixaBay%20Images.jpg"></td>
-     <td><img src="https://github.com/atebsy/events-countdown/blob/master/screenshot_3.jpg"></td>
-    <td><img src="https://github.com/atebsy/events-countdown/blob/master/screenshot_2.jpg"></td>
+     <td><img src="https://github.com/atebsy/PixaBay-Images-Search/blob/main/Screenshot_20220914-170636_PixaBay%20Images.jpg"></td>
+    <td><img src="https://github.com/atebsy/PixaBay-Images-Search/blob/main/Screenshot_20220914-170656_PixaBay%20Images.jpg"></td>
   </tr>
  </table>
  
- <b>Structure:</b> MVVM, Repository pattern With SSOT principle
+ <b>Architecture:</b> <a href="https://developer.android.com/topic/architecture">MVVM, Repository pattern With SSOT principle</a>
  
- <b>Jet pack and other Libraries:</b> Room, Material,lifecycle, test, mockito, desugar, robolectric, junit, appcompat
+ <b>Jet pack and other Libraries:</b> <a href="https://developer.android.com/jetpack/androidx/releases/room">Room</a>, <a href="https://developer.android.com/topic/libraries/architecture/paging/v3-overview">Paging 3</a>, <a href="https://square.github.io/retrofit/">Retrofit</a>,<a href="https://developer.android.com/training/dependency-injection/hilt-android">HILT</a>, Material,lifecycle, test, mockito, desugar, robolectric, junit, appcompat
