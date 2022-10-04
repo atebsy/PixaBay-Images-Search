@@ -1,6 +1,10 @@
 package com.example.android.coding.challenge
 
-import androidx.lifecycle.*
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.android.coding.challenge.Constants.DEFAULT_QUERY
@@ -8,6 +12,7 @@ import com.example.android.coding.challenge.Constants.LAST_QUERY_SCROLLED
 import com.example.android.coding.challenge.Constants.LAST_SEARCH_QUERY
 import com.example.android.coding.challenge.data.searchphotos.PhotosRepository
 import com.example.android.coding.challenge.models.Photo
+import com.example.android.coding.challenge.models.SuggestionPreference
 import com.example.android.coding.challenge.ui.searchphotos.UiAction
 import com.example.android.coding.challenge.ui.searchphotos.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,11 +24,17 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val repository: PhotosRepository,
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle,
+    private val dataStoreUtil: DataStoreUtil,
+    private val dataStore: DataStore<Preferences>
 ) : ViewModel() {
 
-     private var _searchString = MutableStateFlow("")
-     val searchString: StateFlow<String> = _searchString
+    private var _searchString = MutableStateFlow("")
+    val searchString: StateFlow<String> = _searchString
+
+    private var _hasSuggestion =
+        MutableStateFlow<Boolean>(false)
+    val hasSuggestion: StateFlow<Boolean> = _hasSuggestion
 
     /**
      * Stream of immutable states representative of the UI.
@@ -83,7 +94,14 @@ class MainViewModel @Inject constructor(
         accept = { action ->
             viewModelScope.launch { actionStateFlow.emit(action) }
         }
+
+        viewModelScope.launch {
+
+            val preferences: Preferences = dataStore.data.first().toPreferences()
+            _hasSuggestion.value =preferences[PreferencesKeys.HAS_SUGGESTION] ?: false
+        }
     }
+
 
     override fun onCleared() {
         savedStateHandle[LAST_SEARCH_QUERY] = state.value.query
@@ -94,9 +112,18 @@ class MainViewModel @Inject constructor(
     private fun searchPhotos(queryString: String): Flow<PagingData<Photo>> =
         repository.getSearchResultStream(queryString)
 
-    fun updateSearchString(searchString: String){
+    fun updateSearchString(searchString: String) {
         _searchString.value = searchString
+        setHasSuggestions(true)
     }
+
+    fun setHasSuggestions(hasSuggestions: Boolean = false) {
+        viewModelScope.launch {
+            dataStoreUtil.setHasSuggestion(hasSuggestions)
+            _hasSuggestion.value = hasSuggestions
+        }
+    }
+
 }
 
 

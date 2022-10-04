@@ -20,8 +20,8 @@ class PbPhotosRemoteMediator(
     private val query: String,
     private val pbApiService: PbApiService,
     private val appDatabase: AppDatabase,
-    private val roomPhotosDataSource: RoomPhotosDataSource,
-    private val remoteKeysDao: RemoteKeysDao
+    private val roomPhotosDataSource: PhotosDataSource,
+    private val remoteKeysDao: IRemoteDaoKeys
 ) : RemoteMediator<Int, Photo>() {
 
     override suspend fun initialize(): InitializeAction {

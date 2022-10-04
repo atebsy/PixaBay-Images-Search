@@ -2,6 +2,7 @@ package com.example.android.coding.challenge.ui.searchphotos
 
 import android.os.Bundle
 import android.provider.SearchRecentSuggestions
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import androidx.navigation.findNavController
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.coding.challenge.DataStoreUtil
 import com.example.android.coding.challenge.MainViewModel
 import com.example.android.coding.challenge.R
 import com.example.android.coding.challenge.SearchSuggestionProvider
@@ -26,6 +28,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchPhotosFragment : Fragment() {
@@ -65,6 +68,7 @@ class SearchPhotosFragment : Fragment() {
                             SearchSuggestionProvider.AUTHORITY,
                             SearchSuggestionProvider.MODE
                         ).clearHistory()
+                        viewModel.setHasSuggestions(false)
                     }
                     .setNegativeButton(
                         getString(R.string.no)
@@ -78,11 +82,26 @@ class SearchPhotosFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.searchString
                     .collect {
+                        Log.d("TAG", "search string: ${it}")
                         binding.apply {
                             edtSearchPhoto.setText(it)
                             updateSearchListFromInput(viewModel.accept)
                         }
                     }
+            }
+        }
+
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                viewModel.hasSuggestion.collect {
+                    Log.d("TAG", "visibility: ${it}")
+                    when (it) {
+                        false -> binding.binImage.visibility = View.GONE
+                        else -> binding.binImage.visibility = View.VISIBLE
+                    }
+                }
             }
         }
     }
@@ -128,7 +147,7 @@ class SearchPhotosFragment : Fragment() {
     private fun FragmentSearchPhotosBinding.updateSearchListFromInput(onQueryChanged: (UiAction.Search) -> Unit) {
         edtSearchPhoto.text.let {
             if (it.isNotEmpty()) {
-                list.scrollToPosition(0)
+                //list.scrollToPosition(0)
                 onQueryChanged(UiAction.Search(query = it.toString()))
             }
         }
